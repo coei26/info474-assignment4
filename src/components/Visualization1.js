@@ -21,7 +21,7 @@ export const Visualization1 = () => {
     if(colorScheme == "Color") {
       return {
         "North America": "midnightblue", "South America": "mediumvioletred", "Asia": "lightpink",
-        "Africa": "cadetblue", "Australia": "khaki", "Europe": "yellowgreen"
+        "Africa": "cadetblue", "Australia": "red", "Europe": "yellowgreen"
       }
     }
     return {
@@ -123,6 +123,17 @@ export const Visualization1 = () => {
 
     return (
       <div className="container" style={{marginLeft: "auto", marginRight: "auto"}}>
+        <h3 className="pb-4">How does urban rate affect internet use rate across the globe?</h3>
+        <p>
+          Urbanization has historically been regarded as a mark of progress and a sign of economic prosper. Internet usage rates may be
+          an indicator of technological access.
+          In theory, access to technology should increase as areas become more urbanized due to improvements in infrastructure. 
+          However, we know this is not always the case. Which parts of the world are urbanizing faster
+          than infrastructure can support? Where in the world is the lack of access to technology most prevalent? Furthermore,
+          which countries have the greatest disparities when it comes to urbanization and access to technology? 
+          <br></br>
+          <br></br>
+        </p>
         <div className="table">
           <tbody>
             <tr>
@@ -140,15 +151,15 @@ export const Visualization1 = () => {
                 {/* Interaction 2: Continent Checkboxes */}
                 <div>
                   <h5>Select which continents to view:</h5>
-                  <input type="checkbox" id="northamerica" name="northamerica" onChange={() => modifyContinentDisplay("North America")} />
+                  <input type="checkbox" id="northamerica" name="northamerica" onChange={() => modifyContinentDisplay("North America") }/>
                   <label htmlFor="northamerica">&nbsp;North America</label><br />
-                  <input type="checkbox" id="southamerica" name="southamerica" onChange={() => modifyContinentDisplay("South America")} />
+                  <input type="checkbox" id="southamerica" name="southamerica" onChange={() => modifyContinentDisplay("South America")}/>
                   <label htmlFor="southamerica">&nbsp;South America</label><br />
                   <input type="checkbox" id="asia" name="asia" onChange={() => modifyContinentDisplay("Asia")}/>
                   <label htmlFor="asia">&nbsp;Asia</label><br />
-                  <input type="checkbox" id="africa" name="africa" onChange={() => modifyContinentDisplay("Africa")} />
+                  <input type="checkbox" id="africa" name="africa" onChange={() => modifyContinentDisplay("Africa")}/>
                   <label htmlFor="africa">&nbsp;Africa</label><br />
-                  <input type="checkbox" id="australia" name="australia" onChange={() => modifyContinentDisplay("Australia")} />
+                  <input type="checkbox" id="australia" name="australia" onChange={() => modifyContinentDisplay("Australia")}/>
                   <label htmlFor="australia">&nbsp;Australia</label><br />
                   <input type="checkbox" id="europe" name="europe" onChange={() => modifyContinentDisplay("Europe")} />
                   <label htmlFor="europe">&nbsp;Europe</label><br />

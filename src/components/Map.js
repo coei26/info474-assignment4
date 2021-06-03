@@ -3,7 +3,10 @@ import { geoPath, geoMercator, geoEqualEarth } from "d3-geo";
 import { useJson } from "../hooks/useJson";
 import { feature } from "topojson-client";
 import { useFetch } from "../hooks/useFetch";
-//import { scaleSequential } from "d3-scale-chromatic";
+import { scaleSequential } from "d3-scale-chromatic";
+import { extent } from "d3-array";
+//import * as d3 from "d3";
+//import * as d3Chromatic from "d3-scale-chromatic";
 
 export default function Map() {
   const [data, loading] = useJson(
@@ -12,7 +15,7 @@ export default function Map() {
   const [statData, statLoading] = useFetch(
     "https://raw.githubusercontent.com/rishikavikondala/internet-analysis/main/internet.csv"
   );
-  // state for color scheme
+
   // state for column selected (dropdown)
 
   // the dimensions of our svg
@@ -22,7 +25,7 @@ export default function Map() {
   const height = 800;
 
   // if loading, just return some text
-  if (loading) {
+  if (loading & statLoading) {
     return <h2>Loading ...</h2>;
     // only work with all data if data is loaded
   } else {
@@ -52,6 +55,15 @@ export default function Map() {
 
     const path = geoPath().projection(projection);
 
+    const color = scaleSequential()
+      .domain(d3.extent(statData, (d) => +d["incomeperperson"]))
+      .interpolator(d3.interpolateYlGnBu)
+      .unknown("#ccc");
+
+    const determineFillColor = (country) => {
+      let num = countryData[country]["incomeperperson"];
+      return color(num);
+    };
     return (
       <div>
         <h3 className="pb-4">
@@ -74,10 +86,10 @@ export default function Map() {
             <label htmlFor="scheme">Select view:</label>
             <br />
           </h5>
-          <select id="scheme" onChange={() => setColorScheme(scheme.value)}>
-            <option value="Income">Income Per Person</option>
-            <option value="Internet">Internet Use Rate</option>
-            <option value="Urban">Urban Rate</option>
+          <select id="statistic" onChange={() => setStatistic(statistic.value)}>
+            <option value="internet">Internet Use Rate</option>
+            <option value="income">Income Per Person</option>
+            <option value="urban">Urban Rate</option>
           </select>
         </div>
         {/* countries map */}
@@ -96,7 +108,7 @@ export default function Map() {
               return (
                 <path
                   style={{
-                    fill: "gray",
+                    fill: determineFillColor(country),
                     stroke: "black",
                   }}
                   d={path(country)}

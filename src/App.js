@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Scatterplot } from "./components/Scatterplot";
-//import Map from "./components/Map";
-import Test from "./components/Test";
+import Map from "./components/Map";
 import { Bars } from "./components/Bars";
 import { Latitude } from "./components/Latitude";
 import * as mdb from "mdb-ui-kit";
@@ -99,7 +98,7 @@ const App = () => {
           role="tabpanel"
           aria-labelledby="tabpane-tab-3"
         >
-          <Test />
+          <Map />
         </div>
         <div
           className="tab-pane fade"

@@ -19,12 +19,14 @@
     "d3-axis-for-react": "^1.1.0",
     "d3-fetch": "^2.0.0",
     "d3-scale": "^3.3.0",
+    "d3-scale-chromatic": "^2.0.0",
     "mdb-ui-kit": "^3.6.0",
     "parcel": "*",
     "react": "^17.0.2",
     "react-bootstrap": "^1.6.0",
     "react-bootstrap-range-slider": "^2.0.2",
     "react-dom": "^17.0.2",
-    "topojson": "^3.0.2"
+    "topojson": "^3.0.2",
+    "topojson-client": "^3.0.0"
   }
 }

@@ -12,7 +12,7 @@ export default function Map() {
   const [statData, statLoading] = useFetch(
     "https://raw.githubusercontent.com/rishikavikondala/internet-analysis/main/internet.csv"
   );
-  const [selectedCountry, setSelectedCountry] = useState();
+
   // state for column selected (dropdown)
 
   // the dimensions of our svg
@@ -53,7 +53,7 @@ export default function Map() {
     const path = geoPath().projection(projection);
 
     const color = scaleSequential()
-      .domain(d3.extent(Array.from(statData[0]["incomeperperson"])))
+      .domain(d3.extent(statData, (d) => +d["incomeperperson"]))
       .interpolator(d3.interpolateYlGnBu)
       .unknown("#ccc");
 
@@ -103,7 +103,6 @@ export default function Map() {
         >
           <g>
             {countries.features.map((country) => {
-              setSelectedCountry(country);
               return (
                 <path
                   style={{
